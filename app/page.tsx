@@ -5,19 +5,25 @@ import Footer from "@/components/sections/footer";
 import Education from "@/components/sections/education";
 import Navbar from "@/components/navbar";
 import Contact from "@/components/sections/contact";
+import { Suspense } from "react";
+import ProjectsSkeleton from "@/components/sections/projects-skeleton";
+
+export const revalidate = 3600;
 
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-clip bg-black text-white">
       <Navbar />
       <main className="relative z-10">
-        <Hero/>
-        <Projects/>
-        <About/>
-        <Education/>
-        <Contact/>
+        <Hero />
+        <Suspense fallback={<ProjectsSkeleton />}>
+          <Projects />
+        </Suspense>
+        <About />
+        <Education />
+        <Contact />
       </main>
-       <Footer />
+      <Footer />
     </div>
   );
 }
