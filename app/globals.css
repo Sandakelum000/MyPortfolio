@@ -67,10 +67,9 @@
   --popover: #1c1c1e;
   --popover-foreground: #f5f5f7;
 
-/* Neon orange primary */
---primary: #FF6A00;
---primary-foreground: #000000;
-
+  /* Neon orange primary */
+  --primary: #ff6a00;
+  --primary-foreground: #000000;
 
   --secondary: #1c1c1e;
   --secondary-foreground: #f5f5f7;
@@ -78,16 +77,16 @@
   --muted: #1c1c1e;
   --muted-foreground: #86868b;
 
-  --accent: #26201B;
---accent-foreground: #FF9A52;
+  --accent: #26201b;
+  --accent-foreground: #ff9a52;
 
   --destructive: #ff453a;
 
   --border: #303033;
   --input: #303033;
-  --ring: #FF6A00;
+  --ring: #ff6a00;
 
-  --chart-1: #FF6A00;
+  --chart-1: #ff6a00;
   --chart-2: #64d2ff;
   --chart-3: #86868b;
   --chart-4: #a1a1a6;
@@ -97,12 +96,14 @@
 
   --sidebar: #111113;
   --sidebar-foreground: #f5f5f7;
-  --sidebar-primary: #FF6A00;
---sidebar-primary-foreground: #000000;
+  --sidebar-primary: #ff6a00;
+  --sidebar-primary-foreground: #000000;
   --sidebar-accent: #242426;
   --sidebar-accent-foreground: #f5f5f7;
   --sidebar-border: #303033;
   --sidebar-ring: #2997ff;
+
+  --section-glow: #ff6a00;
 }
 
 /* Base styles */
@@ -173,13 +174,7 @@
 
 /* Minimal silver profile frame */
 .profile-float {
-  background: linear-gradient(
-    135deg,
-    #303033,
-    #86868b,
-    #48484a,
-    #202022
-  );
+  background: linear-gradient(135deg, #303033, #86868b, #48484a, #202022);
   background-size: 300% 300%;
   box-shadow: 0 0 32px rgb(255 255 255 / 4%);
   animation:
@@ -288,16 +283,120 @@
 }
 
 @keyframes marquee {
-  to { transform: translateX(-50%); }
+  to {
+    transform: translateX(-50%);
+  }
 }
 @keyframes drift {
-  0%, 100% { transform: translateY(-3%); }
-  50% { transform: translateY(3%); }
+  0%,
+  100% {
+    transform: translateY(-3%);
+  }
+  50% {
+    transform: translateY(3%);
+  }
 }
-.animate-marquee { animation: marquee 35s linear infinite; }
-.animate-drift { animation: drift 9s ease-in-out infinite; }
-.marquee:hover .animate-marquee { animation-play-state: paused; }
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+.animate-drift {
+  animation: drift 9s ease-in-out infinite;
+}
+.marquee:hover .animate-marquee {
+  animation-play-state: paused;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee, .animate-drift { animation: none; }
+  .animate-marquee,
+  .animate-drift {
+    animation: none;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* section bg animations */
+.bg-blob {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--section-glow) 26%, transparent),
+    transparent 68%
+  );
+  will-change: transform;
+}
+
+@keyframes blob-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(6%, 8%, 0) scale(1.12); }
+}
+@keyframes blob-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-8%, -6%, 0) scale(0.92); }
+}
+.animate-blob-a { animation: blob-a 18s ease-in-out infinite; }
+.animate-blob-b { animation: blob-b 22s ease-in-out infinite; }
+
+/* Faint grid, faded toward the edges */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 100%);
+}
+
+/* Dots: the mask stays still while the inner layer drifts by exactly one tile (seamless loop) */
+.bg-dots-wrap {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 100%);
+}
+.bg-dots {
+  position: absolute;
+  inset: -28px;
+  background-image: radial-gradient(rgb(255 255 255 / 0.14) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+  animation: dots-drift 7s linear infinite;
+  will-change: transform;
+}
+@keyframes dots-drift {
+  to { transform: translate3d(28px, 28px, 0); }
+}
+
+/* Slow falling light beams */
+.bg-beam {
+  position: absolute;
+  top: -30%;
+  width: 1px;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--section-glow) 70%, transparent),
+    transparent
+  );
+  animation: beam-fall 8s linear infinite;
+  will-change: transform;
+}
+@keyframes beam-fall {
+  to { transform: translate3d(0, 450%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob-a,
+  .animate-blob-b,
+  .bg-dots,
+  .bg-beam {
+    animation: none;
+  }
 }

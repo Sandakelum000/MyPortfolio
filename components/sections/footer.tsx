@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import Reveal from "@/components/reveal";
 import { techIcons } from "@/lib/tech-icons";
 import { contacts, contactEmail } from "@/lib/contacts";
+import SectionBg from "../section-bg";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -53,6 +54,7 @@ export default function Footer() {
 
   return (
     <footer className="relative z-10 overflow-hidden border-t border-white/10">
+      <SectionBg variant="beams" />
       {/* ---------- Background layer: glows + watermark ---------- */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary to-transparent" />

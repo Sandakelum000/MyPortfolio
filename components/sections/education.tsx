@@ -9,6 +9,7 @@ import type { LucideIcon } from "lucide-react";
 import Reveal from "@/components/reveal";
 import { cn } from "@/lib/utils";
 import { education } from "@/data/education";
+import SectionBg from "../section-bg";
 
 type Entry = {
   period: string;
@@ -30,12 +31,14 @@ const icons: Record<Entry["type"], LucideIcon> = {
 export default function Education() {
   return (
    
-      <section id="education" className="relative z-10 px-6 py-20">
+      <section id="education" className="relative z-10 overflow-hidden px-6 py-20">
+        <SectionBg variant="aurora" />
+         <SectionBg variant="grid" />
         <div className="mx-auto max-w-4xl">
           <p className="text-sm font-medium uppercase tracking-[0.25em] text-primary">
             Education
           </p>
-          <h2 className="mt-2 bg-linear-to-r from-neutral-400 via-white to-neutral-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
+          <h2 className="mt-2 bg-linear-to-r from-neutral-400 via-white to-neutral-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-5xl">
             My Learning Journey
           </h2>
         <Reveal>

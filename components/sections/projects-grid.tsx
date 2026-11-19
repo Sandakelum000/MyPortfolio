@@ -7,6 +7,7 @@ import ProjectModal from "@/components/project-modal";
 import VideoModal from "@/components/video-modal";
 import type { Project } from "@/lib/models/projects";
 import Reveal from "../reveal";
+import SectionBg from "../section-bg";
 
 export default function ProjectsGrid({ projects }: { projects: Project[] }) {
   const [active, setActive] = useState("All");
@@ -33,7 +34,9 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
   };
 
   return (
-    <section id="projects" className="relative z-10 px-6 py-24">
+    <section id="projects" className="relative z-10 overflow-hidden px-6 py-24">
+      <SectionBg variant="aurora" />
+      
       <div className="mx-auto max-w-6xl">
         <p className="text-sm font-medium uppercase tracking-[0.25em] text-primary">
           Portfolio

@@ -3,13 +3,16 @@ import { SquareText, UserRoundPen } from "lucide-react";
 import Image from "next/image";
 import Reveal from "../reveal";
 import { site } from "@/data/site";
+import SectionBg from "@/components/section-bg";
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative z-10 flex items-center justify-center px-6 pb-12 pt-24 md:min-h-[80svh]"
+      className="relative z-10 overflow-hidden flex items-center justify-center px-6 pb-12 pt-24 md:min-h-[80svh]"
     >
+      <SectionBg variant="grid" />
+      <SectionBg variant="grid" />
       <Reveal className="w-full">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 md:flex-row md:gap-10">
           {/* Profile */}

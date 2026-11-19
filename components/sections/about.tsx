@@ -3,10 +3,12 @@ import Reveal from "../reveal";
 import { site, stats } from "@/data/site";
 import { skillGroups } from "@/data/skills";
 import { cn } from "@/lib/utils";
+import SectionBg from "../section-bg";
 
 export default function About() {
   return (
-    <section id="about" className="relative z-10 px-6 py-24">
+    <section id="about" className="relative z-10 overflow-hidden px-6 py-24">
+      <SectionBg variant="dots" />
       <div className="mx-auto max-w-6xl">
         <p className="text-sm font-medium uppercase tracking-[0.25em] text-primary">
           About
