@@ -15,6 +15,7 @@ export const site = {
     github: "https://github.com/Sandakelum000",
     linkedin: "https://www.linkedin.com/in/hiran-sandakelum",
   },
+  cvUrl: "/cv/mycv.pdf",
 };
 
 const learningSince = 2023;

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { SquareText, UserRoundPen } from "lucide-react";
+import { SquareText, UserRoundPen, Download } from "lucide-react";
 import Image from "next/image";
 import Reveal from "../reveal";
 import { site } from "@/data/site";
@@ -70,6 +70,17 @@ export default function Hero() {
                 <UserRoundPen />
                 <a href="#contact">Contact Me</a>
               </Button>
+
+              {site.cvUrl && (
+                <a
+                  href={site.cvUrl}
+                  download="Hiran-Sandakelum-CV.pdf"
+                  className="flex items-center gap-1.5 px-2 text-sm text-gray-400 underline-offset-4 transition-colors hover:text-primary hover:underline"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  Download CV
+                </a>
+              )}
             </div>
           </div>
         </div>
